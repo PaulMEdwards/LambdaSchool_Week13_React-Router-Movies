@@ -3,22 +3,23 @@ import axios from 'axios';
 
 const Movie = (props) => {
   const [movie, setMovie] = useState({});
- 
+
   useEffect(() => {
     const id = 1;
+    // const id = movie.find(m => m.id === Number(props.match.params.id));
     // change ^^^ that line and grab the id from the URL
     // You will NEED to add a dependency array to this effect hook
 
-       axios
-        .get(`http://localhost:5000/api/movies/${id}`)
-        .then(response => {
-          setMovie(response.data);
-        })
-        .catch(error => {
-          console.error(error);
-        });
+    axios
+    .get(`http://localhost:5000/api/movies/${id}`)
+    .then(response => {
+      setMovie(response.data);
+    })
+    .catch(error => {
+      console.error(error);
+    });
 
-  },[]);
+  },[movie]);
   
   // Uncomment this only when you have moved on to the stretch goals
   // const saveMovie = () => {
@@ -43,11 +44,11 @@ const Movie = (props) => {
         </div>
         <h3>Actors</h3>
 
-        {stars.map(star => (
+        {/* {stars.map(star => (
           <div key={star} className="movie-star">
             {star}
           </div>
-        ))}
+        ))} */}
       </div>
       <div className="save-button">Save</div>
     </div>
