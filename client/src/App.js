@@ -7,15 +7,32 @@ import SavedList from './Movies/SavedList.js';
 const App = () => {
   const [savedList, setSavedList] = useState([]);
 
+  const savedListIncludes = movie => {
+    let BreakException = {};
+    let found = false;
+
+    try {
+      savedList.forEach((e) => {
+        if(e.id === movie.id) {
+          found = true;
+          throw BreakException;
+        }
+      });
+    } catch (e) {
+      if (e !== BreakException) throw e;
+    }
+
+    return found;
+  };
+
   const addToSavedList = movie => {
-    setSavedList( [...savedList, movie] );
+    if(!savedListIncludes(movie)) setSavedList([...savedList, movie]);
   };
 
   return (
     <div>
       <SavedList list={savedList} />
       <Route exact path="/" component={MovieList} />
-      {/* <Route exact path="/movies/:id" component={Movie} addToSavedList={addToSavedList} /> */}
       <Route exact path="/movies/:id" render={(props) => <Movie {...props} addToSavedList={addToSavedList} />} />
     </div>
   );
