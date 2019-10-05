@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
-// import { MovieList, Movie, MovieCard, SavedList } from './Movies';
 import MovieList from './Movies/MovieList.js';
 import Movie from './Movies/Movie.js';
-// import MovieCard from './Movies/MovieCard.js';
 import SavedList from './Movies/SavedList.js';
 
 const App = () => {
